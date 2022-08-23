@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+	<!-- annotation 방식 -->
+	<!-- 컴포넌트 스캔 설정 -->
+	<context:component-scan base-package="com.spring.annotation"></context:component-scan>
+	
+	<!-- annotation과 xml 병행 사용 -->
+	<bean class="com.spring.annotation.AppleSpeaker" />
+	
 	<!-- 빈 설정(객체) : SamsungTV -->
-	<bean id="tv" class="com.spring.polymorphism.SamsungTV" />
+	<!-- <bean id="tv" class="com.spring.polymorphism.LgTV" /> -->
+	
+	<!-- 생성자 인젝션 : SonySpeaker -->
+	<!-- <bean id="tv" class="com.spring.consinject.SamsungTV">
+		<constructor-arg ref="sony"></constructor-arg>
+	</bean>
+	<bean id="sony" class="com.spring.consinject.SonySpeaker" /> -->
+	
+	<!-- Setter 인젝션 : AppleSpeaker -->
+	<!-- <bean id="tv" class="com.spring.setterinject.LgTV">
+		<property name="speaker" ref="sony" />
+		<property name="price" value="200000" />
+	</bean>
+	<bean id="sony" class="com.spring.setterinject.SonySpeaker" />
+	<bean id="apple" class="com.spring.setterinject.AppleSpeaker" /> -->
 </beans>

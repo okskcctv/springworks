@@ -1,9 +1,16 @@
-package com.spring.polymorphism;
+package com.spring.consinject;
 
 public class LgTV implements TV{
+	// 积己磊 牢璃记
+	private SonySpeaker speaker;
 	
 	public LgTV() {
 		System.out.println("===> LgTV 按眉 积己");
+	}
+	
+	public LgTV(SonySpeaker speaker) {
+		System.out.println("LgTV(2) 按眉 积己");
+		this.speaker = speaker;
 	}
 	
 	@Override
@@ -18,12 +25,12 @@ public class LgTV implements TV{
 
 	@Override
 	public void volumeUp() {
-		System.out.println("LgTV--家府 棵赴促");
+		speaker.volumeUp();
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("LgTV--家府 郴赴促");
+		speaker.volumeDown();
 	}
 
 }
