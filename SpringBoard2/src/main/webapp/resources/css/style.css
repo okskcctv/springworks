@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 공통 스타일  */
+*{margin: 0; padding: 0;}
+hr{margin: 20px;}
+h3,h4{margin: 10px;}
+#container{width: 1000px; margin: 30px auto; text-align: center;}
+a{text-decoration: none;}
+
+/* boardList 스타일 */
+.tbl_list{margin: 20px auto; width: 620px;}
+.tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse;
+   padding: 10px;}
+.tbl_list th{background: #eee;}
+.btn_box{width: 620px; margin: 0 auto; text-align: left}
+#list button{padding: 10px 20px;}
+
+/* insertBoard 스타일 */
+.tbl_reg{margin: 20px auto; width: 580px;}
+.tbl_reg, td{border: 1px solid #ccc; border-collapse: collapse;
+   padding: 10px;}
+.tbl_reg input{width: 460px; height: 30px; border: 1px solid #aaa; 
+     border-radius:2px;}
+.tbl_reg textarea{width: 460px; border: 1px solid #aaa; border-radius:2px;}
+.tbl_reg td:nth-child(1){width: 100px}
+.tbl_reg input[type="submit"], input[type="button"]{width: 60px; height: 30px;}
+
+/* boardView 스타일 */
+.tbl_view{margin: 20px auto; width: 580px;}
+.tbl_view, td{border: 1px solid #ccc; border-collapse: collapse;
+   padding: 10px;}
+.tbl_view input{width: 460px; height: 30px; border: 1px solid #aaa; 
+     border-radius:2px;}
+.tbl_view textarea{width: 460px; border: 1px solid #aaa; border-radius:2px;}
+.tbl_view td:nth-child(1){width: 100px}
+.tbl_view input[type="submit"], input[type="button"]{width: 60px; height: 30px;}
+.tbl_view .time{text-align: left;}
+
+/* login 스타일 */
+.tbl_login{margin: 20px auto; width: 380px;}
+.tbl_login, td{border: 1px solid #ccc; border-collapse: collapse;
+   padding: 10px;}
+.tbl_login input{width: 200px; height: 30px; border: 1px solid #aaa; 
+   border-radius:2px;}
+.tbl_login input[type="submit"], input[type="reset"]{width: 60px; height: 30px;}
+#login .error{color: #f00; margin-top: 10px;}
+
+
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cloud.mapper.BoardMapper">
+	<!-- id는 메소드, resultType - 반환값 -->
+	<select id="getBoardList" resultType="com.cloud.domain.BoardVO">
+		SELECT * FROM tbl_board ORDER BY bno DESC
+	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO tbl_board(bno, title, writer, content) 
+		VALUES (seq.nextval, #{title}, #{writer}, #{content})
+	</insert>
+	
+	<select id="getBoard" resultType="com.cloud.domain.BoardVO">
+		SELECT * FROM tbl_board WHERE bno = #{bno}
+	</select>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM tbl_board WHERE bno = #{bno}
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard">
+		UPDATE tbl_board 
+		SET title = #{title}, content = #{content}
+		WHERE bno = #{bno}
+	</update>
+	
+	<!-- 조회수 -->
+	<update id="updateCount">
+		UPDATE tbl_board
+		SET cnt = cnt + 1
+		WHERE bno = #{bno}
+	</update>
+</mapper>
+
+
+
+
+
+
