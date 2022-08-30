@@ -34,7 +34,7 @@ public class BoardController {
 		return "boardView";
 	}
 	
-	@RequestMapping(value="/inserBoard", method=RequestMethod.GET)
+	@RequestMapping(value="/insertBoard", method=RequestMethod.GET)
 	public String insertBoard() {	// 글쓰기 폼 페이지 요청
 		return "insertBoard";
 	}

@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.common.JDBCUtil;
 
+@Repository
 public class BoardDAO {
 	
 	private Connection conn = null;
