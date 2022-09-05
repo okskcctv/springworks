@@ -6,10 +6,10 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 public class CustomNoOpPasswordEncoder implements PasswordEncoder{
-	
+
 	@Override
 	public String encode(CharSequence rawPassword) {
-		log.warn("before encode :" + rawPassword);
+		log.warn("before encode : " +  rawPassword);
 		return rawPassword.toString();
 	}
 
@@ -18,5 +18,4 @@ public class CustomNoOpPasswordEncoder implements PasswordEncoder{
 		log.warn("matches: " + rawPassword + ":" + encodedPassword);
 		return rawPassword.toString().equals(encodedPassword);
 	}
-
 }

@@ -1,13 +1,20 @@
 package com.cloud.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.domain.BoardVO;
 import com.cloud.service.BoardService;
@@ -19,44 +26,53 @@ public class BoardController {
 	@Autowired
 	private BoardService service;
 
-	//¸ñ·Ï º¸±â
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/boardList")//localhost:8080/board/boardList
 	public String getBoardList(Model model) {
 		List<BoardVO> boardList = service.getBoardList();
-		model.addAttribute("boardList", boardList); //view·Î Àü¼Û
+		model.addAttribute("boardList", boardList); //viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		return "/board/boardList";
 	}
 	
-	//±Û¾²±â Æû ÆäÀÌÁö ¿äÃ»
+	//ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/insertBoard")
 	public String insert() {
 		return "/board/insertBoard";
 	}
 	
-	//±Û¾²±â Ã³¸® ¿äÃ»
+	//ï¿½Û¾ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½Ã»
 	@PostMapping("/insertBoard")
-	public String insert(BoardVO vo) {
+	@PreAuthorize("isAuthenticated()")
+	public String insert(BoardVO vo) throws IllegalStateException, IOException{
+		// íŒŒì¼ ì—…ë¡œë“œ ì²˜ë¦¬
+		MultipartFile uploadFile = vo.getUploadFile();
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			String filePath = "C:/upload/";
+			uploadFile.transferTo(new File(filePath + fileName));
+		}
 		service.insert(vo);      
 		return "redirect:/board/boardList";
 	}
 	
-	//±Û »ó¼¼º¸±â Ã³¸®
+	//ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	@GetMapping("/boardView")
 	public String getBoard(int bno, Model model) {
-		service.updateCount(bno);   //Á¶È¸¼ö Áõ°¡
-		BoardVO board = service.getBoard(bno); //»ó¼¼ º¸±â Ã³¸®
-		model.addAttribute("board", board);  //model="board" º¸³»±â
+		service.updateCount(bno);   //ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		BoardVO board = service.getBoard(bno); //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+		model.addAttribute("board", board);  //model="board" ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return "/board/boardView";
 	}
 	
-	//±Û »èÁ¦
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/deleteBoard")
 	public String delete(BoardVO vo) {
 		service.delete(vo);
 		return "redirect:/board/boardList";
 	}
 	
-	//±Û ¼öÁ¤
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@PostMapping("/updateBoard")
 	public String update(BoardVO vo) {
 		service.update(vo);

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,12 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
+	<jsp:include page="../menu.jsp" />
 	<div id="container">
 		<section id="list">
-			<h2>글 목록</h2>
-			<h3>
-				<c:out value="${sessionId}" />님 환영합니다...
-				<a href="/logout">Log-out</a>
-			</h3>
+			<div class="title">
+				<h2>글 목록</h2>
+			</div>
 			<table class="tbl_list">
 				<tr>
 					<th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
@@ -37,5 +37,6 @@
 			</div>
 		</section>
 	</div>
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

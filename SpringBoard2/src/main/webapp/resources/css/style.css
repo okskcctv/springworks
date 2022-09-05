@@ -1,10 +1,23 @@
 @charset "UTF-8";
 /* 공통 스타일  */
 *{margin: 0; padding: 0;}
+li{list-style: none;}
 hr{margin: 20px;}
 h3,h4{margin: 10px;}
-#container{width: 1000px; margin: 30px auto; text-align: center;}
-a{text-decoration: none;}
+a{text-decoration: none; color: #000}
+
+/* navbar 스타일 */
+nav{margin-top: 20px; text-align: right; margin-right: 100px;}
+nav ul li{display: inline-block; margin: 10px; 
+    border-top: 3px solid #222; padding: 10px 15px;}
+nav ul li:hover{background: #eee;}
+
+/* layout */
+#container{width: 100%; margin: 0 auto; text-align: center;}
+.title{height: 130px; background: beige; line-height: 130px;
+    margin-bottom: 20px;}
+.msg{height: 80px; background: pink; line-height: 80px; color: brown;}
+footer{margin-left: 20%; margin-top: 10%}
 
 /* boardList 스타일 */
 .tbl_list{margin: 20px auto; width: 620px;}
@@ -43,7 +56,16 @@ a{text-decoration: none;}
    border-radius:2px;}
 .tbl_login input[type="submit"], input[type="reset"]{width: 60px; height: 30px;}
 #login .error{color: #f00; margin-top: 10px;}
+#login .lang{text-align:right; margin-right: 30%;}
 
-
+/* signup 스타일 */
+.tbl_signup{margin: 20px auto; width: 400px;}
+.tbl_signup, td{border: 1px solid #ccc; border-collapse: collapse;
+   padding: 10px;}
+.tbl_signup input{width: 200px; height: 30px; border: 1px solid #aaa; 
+   border-radius:2px;}
+.tbl_signup input[type="submit"], input[type="button"],
+       input[type="reset"]{width: 60px; height: 30px;}
+.tbl_signup td:nth-child(1){width: 120px}
 
 

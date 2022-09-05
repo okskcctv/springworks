@@ -1,21 +1,27 @@
 package com.cloud.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class BoardVO {
-	private int bno;         //±Û¹øÈ£
-	private String title;    //Á¦¸ñ
-	private String writer;   //ÀÛ¼ºÀÚ
-	private String content;  //³»¿ë
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date regDate;    //ÀÛ¼ºÀÏ
-	private int cnt;         //Á¶È¸¼ö
+public class BoardVO implements Serializable{
+
+	private static final long serialVersionUID = 10L;
 	
+	private int bno;         //ï¿½Û¹ï¿½È£
+	private String title;    //ï¿½ï¿½ï¿½ï¿½
+	private String writer;   //ï¿½Û¼ï¿½ï¿½ï¿½
+	private String content;  //ï¿½ï¿½ï¿½ï¿½
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date regDate;    //ï¿½Û¼ï¿½ï¿½ï¿½
+	private int cnt;         //ï¿½ï¿½È¸ï¿½ï¿½
+	
+	private MultipartFile uploadFile;	// íŒŒì¼ ì—…ë¡œë“œ
 }
