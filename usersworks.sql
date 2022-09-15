@@ -12,17 +12,26 @@ commit;
 
 -- board 테이블 생성
 CREATE TABLE tbl_board(
-    bno     NUMBER(5) PRIMARY KEY,
-    title   VARCHAR2(200),
-    writer  VARCHAR2(20),
-    content VARCHAR2(2000),
-    regdate DATE DEFAULT SYSDATE,
-    cnt     NUMBER(5) DEFAULT 0
+    bno         NUMBER(5),
+    title       VARCHAR2(200) NOT NULL,
+    writer      VARCHAR2(20) NOT NULL,
+    content     VARCHAR2(2000) NOT NULL,
+    regdate     DATE DEFAULT SYSDATE,
+    updatedate  DATE DEFAULT SYSDATE,
+    cnt         NUMBER(5) DEFAULT 0
 );
+-- 기본키 제약 조건 이름 설정
+ALTER TABLE tbl_board ADD CONSTRAINT pk_board
+PRIMARY KEY(bno);
+
 -- 시퀸스 : 자동 순번
 CREATE SEQUENCE seq;
 
+DROP SEQUENCE seq;
+
 ALTER TABLE board RENAME TO tbl_board;
+
+DROP TABLE tbl_board;
 
 -- 게시글 추가
 INSERT INTO tbl_board(bno, title, writer, content)
@@ -109,3 +118,16 @@ SELECT mem.userid, userpw, username, enabled, regdate, updatedate, auth
 COMMIT;
 
 UPDATE tbl_member_auth SET auth = 'ROLE_ADMIN' WHERE userid='admin';
+
+SELECT mem.userid, userpw, username, enabled, regdate, updatedate, auth
+		FROM tbl_member mem
+     		LEFT OUTER JOIN tbl_member_auth auth
+     		ON mem.userid = auth.userid;
+
+-- 권한이랑 연결된 목록            
+SELECT * FROM tbl_member mem
+LEFT OUTER JOIN tbl_member_auth auth
+     		ON mem.userid = auth.userid
+            ORDER BY regdate DESC;
+
+SELECT * FROM tbl_member ORDER BY regdate DESC;

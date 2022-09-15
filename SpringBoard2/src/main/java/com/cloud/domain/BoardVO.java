@@ -15,13 +15,14 @@ public class BoardVO implements Serializable{
 
 	private static final long serialVersionUID = 10L;
 	
-	private int bno;         //�۹�ȣ
-	private String title;    //����
-	private String writer;   //�ۼ���
-	private String content;  //����
+	private int bno;         
+	private String title;    
+	private String writer;   
+	private String content;  
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date regDate;    //�ۼ���
-	private int cnt;         //��ȸ��
+	private Date regDate;    
+	private Date updateDate;
+	private int cnt;         
 	
 	private MultipartFile uploadFile;	// 파일 업로드
 }

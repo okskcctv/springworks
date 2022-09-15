@@ -9,7 +9,7 @@ public class MemberVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private int uno;
+	/* private int uno; */ // 지워도 될듯
 	private String id;
 	private String pw;
 	private String name;

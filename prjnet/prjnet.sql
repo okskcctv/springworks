@@ -25,6 +25,8 @@ CREATE TABLE board(
 );
 
 DROP TABLE board;
+DROP TABLE member;
+DROP TABLE member_auth;
 
 CREATE TABLE member_auth(
     uno     NUMBER NOT NULL,

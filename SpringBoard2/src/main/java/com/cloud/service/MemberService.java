@@ -2,23 +2,24 @@ package com.cloud.service;
 
 import java.util.List;
 
+import com.cloud.domain.AuthVO;
 import com.cloud.domain.MemberVO;
 
 public interface MemberService {
 
-	//È¸¿ø °¡ÀÔ
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void signup(MemberVO member);
 	
-	//È¸¿ø ¸ñ·Ï
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<MemberVO> getMemberList();
 	
-	//È¸¿ø »ó¼¼ º¸±â
+	//È¸ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public MemberVO read(String userid);
 	
-	//È¸¿ø Å»Åð
+	//È¸ï¿½ï¿½ Å»ï¿½ï¿½
 	public void delete(MemberVO member);
 	
-	//È¸¿ø ¼öÁ¤
+	//È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void update(MemberVO member);
 }
 

@@ -35,8 +35,14 @@
 	</insert>
 	
 	<!-- 회원 목록 -->
-	<select id="getMemberList" resultMap="memberMap">
+	<!-- <select id="getMemberList" resultMap="memberMap">
 		SELECT * FROM tbl_member ORDER BY regdate DESC
+	</select> -->
+	<!-- 회원 목록 변경 -->
+	<select id="getMemberList" resultMap="memberMap">
+		SELECT * FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth
+     		ON mem.userid = auth.userid
+        	ORDER BY regdate DESC
 	</select>
 	
 	<!-- 회원 삭제 -->

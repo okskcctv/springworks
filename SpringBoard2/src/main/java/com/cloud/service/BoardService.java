@@ -3,18 +3,23 @@ package com.cloud.service;
 import java.util.List;
 
 import com.cloud.domain.BoardVO;
+import com.cloud.domain.Criteria;
 
 public interface BoardService {
 	
-	public List<BoardVO> getBoardList(); //±Û ¸ñ·Ï º¸±â
+	// public List<BoardVO> getBoardList();	// ê¸€ ëª©ë¡
 	
-	public void insert(BoardVO vo);  //±Û¾²±â
+	public void insert(BoardVO vo);	// ê¸€ ì“°ê¸°
 	
-	public BoardVO getBoard(int bno);  //±Û »ó¼¼ º¸±â
+	public List<BoardVO> getListWithPage(Criteria cri);	// ëª©ë¡ í˜ì´ì§€ ì²˜ë¦¬
 	
-	public void delete(BoardVO vo);  //±Û »èÁ¦
+	public int getTotalCount(Criteria cri);	// ê²Œì‹œê¸€ ì´ ê°œìˆ˜
 	
-	public void update(BoardVO vo);  //±Û »èÁ¦
+	public BoardVO getBoard(int bno);	// ê¸€ ìƒì„¸ë³´ê¸°
 	
-	public void updateCount(int bno);  //Á¶È¸¼ö
+	public void delete(BoardVO vo);	// ê¸€ ì‚­ì œ
+	
+	public void update(BoardVO vo);	// ê¸€ ìˆ˜ì •
+	
+	public void updateCount(int bno);	// ì¡°íšŒìˆ˜
 }

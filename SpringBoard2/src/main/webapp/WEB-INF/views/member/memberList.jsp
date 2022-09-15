@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 						<!-- <th>비밀번호</th> -->
 						<th>이 름</th>
 						<th>가입일</th>
+						<th>권한</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,6 +36,7 @@
 						<%-- <td><c:out value="${member.userpw}" /></td> --%>
 						<td><c:out value="${member.username}" /></td>
 						<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						<td><c:out value="${fn:replace(fn:split(member.authList.get(0), '=')[2], ')', '')}" /></td>
 					</tr>
 				</c:forEach>
 				</tbody>

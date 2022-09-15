@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.domain.BoardVO;
+import com.cloud.domain.Criteria;
 import com.cloud.mapper.BoardMapper;
 
 @Service
@@ -15,33 +16,38 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
-	public List<BoardVO> getBoardList() { //¸ñ·Ï º¸±â
-		return mapper.getBoardList();
-	}
-
-	@Override
-	public void insert(BoardVO vo) { //±Û¾²±â
+	public void insert(BoardVO vo) {
 		mapper.insertBoard(vo);
 	}
 
 	@Override
-	public BoardVO getBoard(int bno) {  //±Û »ó¼¼ º¸±â
+	public BoardVO getBoard(int bno) {
 		return mapper.getBoard(bno);
 	}
 
 	@Override
-	public void delete(BoardVO vo) { //±Û »èÁ¦ ¼­ºñ½º
+	public void delete(BoardVO vo) {
 		mapper.deleteBoard(vo);
 	}
 
 	@Override
-	public void update(BoardVO vo) { //±Û ¼öÁ¤ ¼­ºñ½º
+	public void update(BoardVO vo) {
 		mapper.updateBoard(vo);
 	}
 
 	@Override
-	public void updateCount(int bno) { //Á¶È¸¼ö ¼­ºñ½º
+	public void updateCount(int bno) {
 		mapper.updateCount(bno);
+	}
+
+	@Override
+	public List<BoardVO> getListWithPage(Criteria cri) {	// ëª©ë¡ ë³´ê¸°(í˜ì´ì§•)
+		return mapper.getListWithPage(cri);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {	// ì´ ê²Œì‹œê¸€ ìˆ˜
+		return mapper.getTotalCount(cri);
 	}
 
 }
