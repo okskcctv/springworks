@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class boardVO implements Serializable{
+public class BoardVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -13,6 +13,6 @@ public class boardVO implements Serializable{
 	private String title;
 	private String content;
 	private String image;
-	private int uno;
+	private String id;
 	
 }

@@ -62,7 +62,7 @@
 		SELECT * FROM
 		(
 			SELECT /*+ INDEX_DESC(tbl_board pk_board) */
-				ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt
+				ROWNUM rn, bno, title, content, writer, regdate, updatedate, cnt, replycnt
 			FROM tbl_board
 			WHERE
 		]]>
@@ -106,6 +106,13 @@
 			ROWNUM < 10
 		]]>
 	</select>
+	
+	<!-- 댓글 개수 -->
+	<update id="updateReplyCnt">
+		UPDATE tbl_board
+		SET replycnt = replycnt + #{amount}
+		WHERE bno = #{bno}
+	</update>
 </mapper>
 
 

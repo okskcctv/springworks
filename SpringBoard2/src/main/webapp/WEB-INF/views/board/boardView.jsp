@@ -21,6 +21,35 @@
 			e.preventDefault();
 			actionForm.submit();
 		});
+		
+		// 댓글 등록
+		let replyForm = $("#replyForm");
+		$(".replyBtn").click(function(e){
+			e.preventDefault();
+			
+			replyForm.attr("action", "/board/reply");
+			replyForm.submit();
+		});
+		
+		// 댓글 삭제 페이지 요청
+		$(".replyDeleteBtn").click(function(e){
+			e.preventDefault();
+			console.log("click...");
+			let rno = $(this).attr("data-rno");
+			
+			location.href = "/board/replyDelete?bno=${board.bno}"
+					+ "&rno=" + rno;
+		});
+		
+		// 댓글 수정 페이지 요청
+		$(".replyUpdateBtn").click(function(e){
+			e.preventDefault();
+			console.log("click...");
+			let rno = $(this).attr("data-rno");
+			
+			location.href = "/board/replyUpdate?bno=${board.bno}"
+					+ "&rno=" + rno;
+		});
 	});
 </script>
 </head>
@@ -81,7 +110,45 @@
 				</table>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			</form>
+			<!-- 댓글 영역 -->
+			<div class="comment">
+				<h4>댓글</h4>
+				<ol class="replyList">
+					<c:forEach items="${replyList}" var="list">
+						<li>
+							<p>작성자: <c:out value="${list.replyer}" />&nbsp;&nbsp;
+							   (작성일: <fmt:formatDate value="${list.replyDate}"
+							   					pattern="yyyy-MM-dd hh:mm:ss"/>)
+							</p>
+							<p><c:out value="${list.reply}" /></p>
+							<c:if test="${pinfo.username eq list.replyer}">
+							<p>
+								<button type="button" class="replyUpdateBtn" data-rno="${list.rno}">수정</button>
+								<button type="button" class="replyDeleteBtn" data-rno="${list.rno}">삭제</button>
+							</p>
+							</c:if>
+						</li>
+					</c:forEach>
+				</ol>
+				<!-- 댓글 등록 폼 -->
+				<form method="post" id="replyForm" class="replyForm">
+					<input type="hidden" name="bno" value="${board.bno}">
+					<ul>
+						<li>
+							<label>작성자</label>
+							<input type="text" name="replyer" id="replyer"
+								value='<security:authentication property="principal.username"/>'>
+						</li>
+						<li>
+							<textarea rows="4" cols="60" name="reply" id="reply"></textarea>
+							<button type="button" class="replyBtn">댓글 등록</button>
+						</li>
+					</ul>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				</form>
+			</div>
 		</section>
+		<!-- 페이지 및 검색 전송 폼 -->
 		<form action="/board/boardList" method="get" id="actionForm">
 			<input type="hidden" name="bno" value="${board.bno}">
 			<!-- 목록 페이지로 이동시 페이지 번호 유지(없으면 1페이지로 감) -->

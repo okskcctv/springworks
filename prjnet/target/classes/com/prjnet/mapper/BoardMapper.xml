@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.prjnet.mapper.BoardMapper">
+
+	<!-- 검색 모듈 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND">
+			<foreach collection="typeArr" item="type" separator="OR">
+				<if test="type=='T'.toString()">
+					title like '%'||#{keyword}||'%'
+				</if>
+				<if test="type=='C'.toString()">
+					content like '%'||#{keyword}||'%'
+				</if>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- id는 메소드, resultType - 반환값 -->
+	<!-- 글 목록 -->
+	<select id="getBoardList" resultType="com.prjnet.domain.BoardVO">
+		SELECT * FROM board ORDER BY bno DESC
+	</select>
+	
+	<!-- 글 쓰기 -->
+	<insert id="insertBoard">
+		INSERT INTO board(bno, title, content, id)
+		VALUES (seq.nextval, #{title}, #{content}, #{id})
+	</insert>
+	
+	<!-- 글 상세보기 -->
+	<select id="getBoard" resultType="com.prjnet.domain.BoardVO">
+		SELECT * FROM board WHERE bno = #{bno}
+	</select>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM board WHERE bno = #{bno}
+	</delete>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard">
+		UPDATE board
+		SET title = #{title}, content = #{content}
+		WHERE bno = #{bno}
+	</update>
+	
+	<!-- 목록 보기(검색 처리) -->
+	<select id="getListWithPage" resultType="com.prjnet.domain.BoardVO">
+		<![CDATA[
+			SELECT bno, title, content, id
+			FROM board
+			WHERE
+		]]>
+			<include refid="criteria" />
+		<![CDATA[
+			bno > 0
+		]]>
+	</select>
+</mapper>

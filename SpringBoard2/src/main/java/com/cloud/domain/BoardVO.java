@@ -22,7 +22,8 @@ public class BoardVO implements Serializable{
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date regDate;    
 	private Date updateDate;
-	private int cnt;         
+	private int cnt;
+	private int replyCnt;	// 댓글 개수
 	
 	private MultipartFile uploadFile;	// 파일 업로드
 }

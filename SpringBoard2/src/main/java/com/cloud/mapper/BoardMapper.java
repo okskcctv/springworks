@@ -3,6 +3,8 @@ package com.cloud.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cloud.domain.BoardVO;
 import com.cloud.domain.Criteria;
 
@@ -25,4 +27,11 @@ public interface BoardMapper {
 	public void updateCount(int bno);	// 조회수
 	
 	List<BoardVO> searchTest(Map<String, Map<String, String>> map);	// 검색
+	
+	// 댓글 개수 - MyBatis는 2개의 파라미터를 사용할 수 없음. @Param 사용
+	public void updateReplyCnt(
+			@Param("bno") int bno,
+			@Param("amount") int amount
+	);
+	
 }
