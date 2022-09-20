@@ -17,13 +17,18 @@ nav ul li:hover{background: #eee;}
 .title{height: 130px; background: beige; line-height: 130px;
     margin-bottom: 20px;}
 .msg{height: 80px; background: pink; line-height: 80px; color: brown;}
-footer{margin-left: 20%; margin-top: 10%}
+.exception{background: pink; padding: 50px;}
+footer{margin: 10% 20%;}
 
 /* boardList 스타일 */
 .tbl_list{margin: 20px auto; width: 620px;}
 .tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse;
    padding: 10px;}
 .tbl_list th{background: #eee;}
+.tbl_list .cnt{color: #bb0000;}
+.tbl_list td:nth-child(2){text-align:left; padding-left: 15px;}
+#list select, .keyword{height: 25px;}
+#list ul li{display:inline-block; margin: 5px;}
 .btn_box{width: 620px; margin: 0 auto; text-align: left}
 #list button{padding: 10px 20px;}
 
@@ -48,6 +53,17 @@ footer{margin-left: 20%; margin-top: 10%}
 .tbl_view input[type="submit"], input[type="button"]{width: 60px; height: 30px;}
 .tbl_view .time{text-align: left;}
 
+/* comment 스타일 */
+#view .comment{width: 580px; margin: 40px auto; 
+	text-align: left; border-top: 2px dashed #aaa;}
+#view .replyList p{padding-left: 10px; margin: 10px;}
+#view .replyList p.content{border-bottom: 1px dotted #aaa; padding-bottom: 10px;}
+#view .replyForm{width: 580px; margin: 20px auto; text-align: left; }
+#view .replyForm input{height: 25px;}
+#view ul li{display: block; margin: 10px;}	
+#view textarea{float: left; margin-right: 20px;}
+#view button{font-size: 0.9em; padding: 3px;}
+	
 /* login 스타일 */
 .tbl_login{margin: 20px auto; width: 380px;}
 .tbl_login, td{border: 1px solid #ccc; border-collapse: collapse;
@@ -57,15 +73,17 @@ footer{margin-left: 20%; margin-top: 10%}
 .tbl_login input[type="submit"], input[type="reset"]{width: 60px; height: 30px;}
 #login .error{color: #f00; margin-top: 10px;}
 #login .lang{text-align:right; margin-right: 30%;}
+#login .lang a{color: green;}
 
 /* signup 스타일 */
-.tbl_signup{margin: 20px auto; width: 400px;}
+.tbl_signup{margin: 20px auto; width: 450px;}
 .tbl_signup, td{border: 1px solid #ccc; border-collapse: collapse;
    padding: 10px;}
 .tbl_signup input{width: 200px; height: 30px; border: 1px solid #aaa; 
    border-radius:2px;}
 .tbl_signup input[type="submit"], input[type="button"],
        input[type="reset"]{width: 60px; height: 30px;}
+.tbl_signup button{padding: 3px;}
 .tbl_signup td:nth-child(1){width: 120px}
 
 

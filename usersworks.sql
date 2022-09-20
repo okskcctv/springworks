@@ -18,7 +18,8 @@ CREATE TABLE tbl_board(
     content     VARCHAR2(2000) NOT NULL,
     regdate     DATE DEFAULT SYSDATE,
     updatedate  DATE DEFAULT SYSDATE,
-    cnt         NUMBER(5) DEFAULT 0
+    cnt         NUMBER(5) DEFAULT 0,
+    replycnt    NUMBER DEFAULT 0
 );
 -- 기본키 제약 조건 이름 설정
 ALTER TABLE tbl_board ADD CONSTRAINT pk_board
@@ -32,6 +33,9 @@ DROP SEQUENCE seq;
 ALTER TABLE board RENAME TO tbl_board;
 
 DROP TABLE tbl_board;
+
+-- 댓글 개수 칼럼 추가
+ALTER TABLE tbl_board ADD replycnt NUMBER DEFAULT 0;
 
 -- 게시글 추가
 INSERT INTO tbl_board(bno, title, writer, content)
@@ -131,3 +135,40 @@ LEFT OUTER JOIN tbl_member_auth auth
             ORDER BY regdate DESC;
 
 SELECT * FROM tbl_member ORDER BY regdate DESC;
+
+-- 댓글 테이블
+CREATE TABLE tbl_reply(
+    rno         NUMBER(5),
+    bno         NUMBER(5) NOT NULL,
+    reply       VARCHAR2(1000) NOT NULL,
+    replyer     VARCHAR2(50) NOT NULL,
+    replydate   DATE DEFAULT SYSDATE,
+    updatedate  DATE DEFAULT SYSDATE
+);
+
+-- 자동 순번
+CREATE SEQUENCE seq_reply;
+-- 기본키 설정
+ALTER TABLE tbl_reply ADD CONSTRAINT pk_reply PRIMARY KEY(rno);
+-- 외래키 설정
+ALTER TABLE tbl_reply ADD CONSTRAINT fk_reply_board
+FOREIGN KEY(bno) REFERENCES tbl_board(bno) ON DELETE CASCADE;
+
+COMMIT;
+
+SELECT * FROM tbl_board;
+
+-- 더미 데이터(댓글) 입력
+INSERT INTO tbl_reply(rno, bno, reply, replyer)
+VALUES (seq_reply.NEXTVAL, 2, '태풍이 자주 오네요...', 'admin');
+
+SELECT * FROM tbl_reply
+WHERE bno = 2;
+
+-- 댓글 수 업데이트(이전에 작성된 댓글 개수)
+UPDATE tbl_board
+SET replycnt =
+    (
+    SELECT COUNT(rno) FROM tbl_reply
+    WHERE tbl_reply.bno = tbl_board.bno
+    );
