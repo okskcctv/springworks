@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.prjnet.domain.BoardVO;
+import com.prjnet.domain.Criteria;
 
 public interface BoardMapper {
 	
@@ -17,7 +18,7 @@ public interface BoardMapper {
 	public void deleteBoard(BoardVO board);
 	
 	// 글 목록
-	public List<BoardVO> getBoardList();
+	public List<BoardVO> getBoardList(Criteria cri);
 	
 	// 글 상세보기
 	public BoardVO getBoard(int bno);

@@ -1,6 +1,7 @@
 package com.prjnet.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,4 +14,5 @@ public class MemberVO implements Serializable{
 	private String pw;
 	private String name;
 	private int age;
+	private List<AuthVO> authList;
 }

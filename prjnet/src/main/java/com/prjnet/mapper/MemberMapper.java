@@ -11,7 +11,7 @@ public interface MemberMapper {
 	public void insertMember(MemberVO member);
 	
 	// 회원 삭제
-	public void deleteMember(String id);
+	public void deleteMember(MemberVO member);
 	
 	// 정보 수정
 	public void updateMember(MemberVO member);
