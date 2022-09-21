@@ -43,6 +43,7 @@ public class ReplyServiceImpl implements ReplyService{
 	// 댓글 삭제
 	@Override
 	public void delete(ReplyVO vo) {
+		boardMapper.updateReplyCnt(vo.getBno(), -1);
 		mapper.delete(vo);
 	}
 	

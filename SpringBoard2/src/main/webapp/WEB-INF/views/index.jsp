@@ -16,10 +16,27 @@
 			</div>
 			
 			<div>
-				<img src="/resources/images/activity.jpg" alt="행글라이더">
+				<img id="pic" src="/resources/images/activity.jpg" alt="행글라이더">
 			</div>
 		</section>
 	</div>
 	<jsp:include page="./footer.jsp" />
+<script type="text/javascript">
+	let picture = ["/resources/images/activity.jpg",
+		"/resources/images/healing.jpg"];
+	
+	let idx = 0;
+	
+	slideShow();	// 함수 호출
+	
+	function slideShow(){
+		document.getElementById("pic").src = picture[idx];
+		idx++;
+		if(idx == picture.length)
+			idx = 0;
+		
+		setTimeout(slideShow, 2000);	// 2초에 한장씩 넘어감
+	}
+</script>
 </body>
 </html>

@@ -12,38 +12,43 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/sample/*")
 @Controller
 public class SampleController {
+	
+	@GetMapping("/functions")
+	public String doFunctions() {
+		return "/sample/functions";
+	}
 
 	/*@GetMapping("/all")
 	public void doAll() {
-		log.info("¸ðµç »ç¿ëÀÚ°¡ Á¢±ÙÇÒ ¼ö ÀÖÀ½");
+		log.info("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 	}*/
 	
 	@GetMapping("/all")
 	public String doAll() {
-		log.info("¸ðµç »ç¿ëÀÚ°¡ Á¢±ÙÇÒ ¼ö ÀÖÀ½");
+		log.info("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		return "/sample/all";
 	}
 	
 	@GetMapping("/member")
 	public void doMember() {
-		log.info("·Î±×ÀÎÇÑ È¸¿ø(¸â¹ö)");
+		log.info("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½(ï¿½ï¿½ï¿½)");
 	}
 	
 	@GetMapping("/admin")
 	public void doAdmin() {
-		log.info("·Î±×ÀÎÇÑ °ü¸®ÀÚ¸¸ Á¢±Ù");
+		log.info("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½");
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
 	@GetMapping("/annoMember")
 	public void doMember2() {
-		log.info("·Î±×ÀÎÇÑ ¸â¹ö¿Í °ü¸®ÀÚ ¸ðµÎ");
+		log.info("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
 	}
 	
 	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/annoAdmin")
 	public void doAdmin2(){
-		log.info("·Î±×ÀÎÇÑ °ü¸®ÀÚ¸¸");
+		log.info("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½");
 	}
 	
 }

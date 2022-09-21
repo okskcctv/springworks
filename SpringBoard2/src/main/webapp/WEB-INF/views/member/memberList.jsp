@@ -26,6 +26,7 @@
 						<th>이 름</th>
 						<th>가입일</th>
 						<th>권한</th>
+						<!-- <th>권한2</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -35,7 +36,8 @@
 						<td><a href="/member/memberView?userid=<c:out value="${member.userid}" />"> <c:out value="${member.userid}" /></a></td>
 						<%-- <td><c:out value="${member.userpw}" /></td> --%>
 						<td><c:out value="${member.username}" /></td>
-						<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+						<td><fmt:formatDate value="${member.regDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						<%-- <td><c:out value="${member.authList.get(0)}" /></td> --%>
 						<td><c:out value="${fn:replace(fn:split(member.authList.get(0), '=')[2], ')', '')}" /></td>
 					</tr>
 				</c:forEach>
